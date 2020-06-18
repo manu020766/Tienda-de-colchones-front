@@ -1,0 +1,26 @@
+<div class="container-header">
+    <mat-toolbar color="primary">
+        <button mat-icon-button (click)="toggleSideNav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-icon style="margin: 0 10px 0 15px;">school</mat-icon>
+        <span>Academia</span>
+    </mat-toolbar>
+
+    <mat-sidenav-container>
+        <mat-sidenav [mode]="style" [opened]="open" #sidenav role="navigation">
+            <main>
+                <mat-nav-list>
+                    <mat-list-item (click)="navega('/colchones')">COLCHONES</mat-list-item>
+                    <mat-list-item (click)="navega('/somieres')">SOMIERES</mat-list-item>
+                </mat-nav-list>
+            </main>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <main>
+                <router-outlet></router-outlet>
+            </main>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
+
