@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core'
 import { Observable, Subscription, fromEvent } from 'rxjs'
-import { Router } from '@angular/router'
+import { Router, NavigationEnd } from '@angular/router'
 import { MatSidenav } from '@angular/material/sidenav'
 import { NavigationService } from './navigation.service'
+
+
 
 @Component({
   selector: 'app-navigation',
@@ -17,12 +19,26 @@ export class NavigationComponent implements OnInit, OnDestroy, AfterViewInit {
   open:boolean
   style:string
 
+  showDestacados:boolean
+
   constructor(private router:Router, public navigatioService: NavigationService) {
     // this.navigatioService.setSidenav(this.sidenav)
     this.getScreenSize()
 
     this.resizeObservable$ = fromEvent(window, 'resize')
     this.resizeSubscription$ = this.resizeObservable$.subscribe( evt => this.getScreenSize())
+
+    this.router.events.subscribe(ruta => {
+      if ( ruta instanceof NavigationEnd) {
+        this.showDestacados = (ruta.url === "/") ? true:false
+
+        // if (ruta.url === "/") {
+        //   this.showDestacados = true
+        // } else {
+        //   this.showDestacados = false
+        // }
+      }
+    })
    }
 
   getScreenSize(event?) {

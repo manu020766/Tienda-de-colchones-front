@@ -3,8 +3,10 @@
         <button mat-icon-button (click)="toggleSideNav()">
             <mat-icon>menu</mat-icon>
         </button>
-        <mat-icon style="margin: 0 10px 0 15px;">school</mat-icon>
-        <span>Academia</span>
+        <div id="paginaInicial">
+            <mat-icon>airline_seat_flat</mat-icon>
+            <mat-list-item routerLink="/">Tienda de colchones</mat-list-item>
+        </div>
     </mat-toolbar>
 
     <mat-sidenav-container>
@@ -18,6 +20,7 @@
         </mat-sidenav>
         <mat-sidenav-content>
             <main>
+                <div *ngIf="showDestacados">Destacados</div>
                 <router-outlet></router-outlet>
             </main>
         </mat-sidenav-content>
