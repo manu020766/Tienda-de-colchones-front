@@ -8,12 +8,14 @@ import { MaterialModule } from '../shared/material.module'
 import { DashboardComponent } from './dashboard.component'
 import { NavigationComponent } from '../shared/navigation/navigation.component'
 import { DestacadosComponent } from '../componentes/destacados/destacados.component'
+import { VerProductoComponent } from '../componentes/ver-producto/ver-producto.component'
 
 @NgModule({
   declarations: [
     DashboardComponent,
     DestacadosComponent,
-    NavigationComponent
+    NavigationComponent,
+    VerProductoComponent
   ],
   imports: [
     CommonModule,

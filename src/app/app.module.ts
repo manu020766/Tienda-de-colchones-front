@@ -9,7 +9,6 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { NotFoundModule } from './not-found/not-found.module';
 import { MaterialModule } from './shared/material.module';
 
-
 @NgModule({
   declarations: [
     AppComponent

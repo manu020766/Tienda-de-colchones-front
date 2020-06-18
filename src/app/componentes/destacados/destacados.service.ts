@@ -16,4 +16,8 @@ export class DestacadosService {
   getDestacados():Observable<Producto[]> {
     return this.http.get<Producto[]>(`${this.baseApiUrl}/destacados`)
   }
+
+  getProductoByCategoriaId(categoria:string, id:string):Observable<Producto> {
+    return this.http.get<Producto>(`${this.baseApiUrl}/${categoria}/${id}`)
+  }
 }
