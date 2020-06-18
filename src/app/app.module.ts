@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { NotFoundModule } from './not-found/not-found.module';
+import { MaterialModule } from './shared/material.module';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { NotFoundModule } from './not-found/not-found.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MaterialModule,
     LoginModule,
     DashboardModule,
     NotFoundModule

@@ -6,10 +6,12 @@ import { MaterialModule } from '../shared/material.module'
 
 import { DashboardComponent } from './dashboard.component'
 import { NavigationComponent } from '../shared/navigation/navigation.component'
+import { DestacadosComponent } from '../componentes/destacados/destacados.component'
 
 @NgModule({
   declarations: [
     DashboardComponent,
+    DestacadosComponent,
     NavigationComponent
   ],
   imports: [
