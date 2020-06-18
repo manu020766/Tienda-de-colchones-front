@@ -33,6 +33,8 @@ export class DestacadosService {
     return this.http.get<Producto[]>(`${this.baseApiUrl}/somieres`)
   }
 
-
+  delSomier(id: string) {
+    return this.http.delete(`${this.baseApiUrl}/somieres/${id}`)
+  }
 
 }
