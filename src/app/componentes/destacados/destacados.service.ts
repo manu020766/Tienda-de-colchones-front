@@ -20,4 +20,19 @@ export class DestacadosService {
   getProductoByCategoriaId(categoria:string, id:string):Observable<Producto> {
     return this.http.get<Producto>(`${this.baseApiUrl}/${categoria}/${id}`)
   }
+
+  getColchones():Observable<Producto[]> {
+    return this.http.get<Producto[]>(`${this.baseApiUrl}/colchones`)
+  }
+
+  delColchon(id: string) {
+    return this.http.delete(`${this.baseApiUrl}/colchones/${id}`)
+  }
+
+  getSomieres():Observable<Producto[]> {
+    return this.http.get<Producto[]>(`${this.baseApiUrl}/somieres`)
+  }
+
+
+
 }
