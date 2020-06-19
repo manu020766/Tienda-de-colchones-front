@@ -29,7 +29,9 @@ export class VerProductoComponent implements OnInit, OnDestroy {
   }
 
   borrarProducto(id:string) {
-    this.sub2 = this.repoService.delColchon(id).subscribe(res => this.location.back())
+    let respuesta = confirm('Desea borrar el producto')
+
+    if (respuesta) this.sub2 = this.repoService.delColchon(id).subscribe(res => this.location.back())
   }
 
   volver() {

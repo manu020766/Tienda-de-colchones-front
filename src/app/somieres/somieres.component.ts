@@ -48,7 +48,8 @@ export class SomieresComponent implements OnInit, AfterViewInit {
   }
  
   public redirectToDelete = (id: string) => {
-    this.repoService.delSomier(id).subscribe(res => this.getSomieres())
+    let respuesta = confirm('Desea borrar el producto')
+    if (respuesta) this.repoService.delSomier(id).subscribe(res => this.getSomieres())
   }
 
 }

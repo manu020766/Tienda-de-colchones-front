@@ -49,7 +49,8 @@ export class ColchonesComponent implements OnInit, AfterViewInit {
   }
  
   public redirectToDelete = (id: string) => {
-    this.repoService.delColchon(id).subscribe(res => this.getColchones())
+    let respuesta = confirm('Desea borrar el producto')
+    if (respuesta) this.repoService.delColchon(id).subscribe(res => this.getColchones())
   }
 
 }
