@@ -43,7 +43,7 @@ export class VerProductoComponent implements OnInit, OnDestroy {
       if (result === true) {
         this.sub2 = this.repoService.delColchon(producto._id).subscribe(res => this.location.back())
       }
-    });
+    })
   }
 
   volver() {
