@@ -19,5 +19,11 @@ export class AuthService {
 
       return this.http.post('http://localhost:3000/login', body).toPromise() 
   }
+
+  isAdministrador() {
+    let usuario = JSON.parse(localStorage.getItem('usuario'))
+    console.log(usuario.rol)
+    return usuario.rol === 'administrador'
+  }
   
 }

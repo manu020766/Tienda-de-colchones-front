@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'
 import { Router } from '@angular/router'
 import { ProductoRepositorioService } from '../core/productoRepositorio.service';
+import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-somieres',
@@ -13,16 +14,24 @@ import { ProductoRepositorioService } from '../core/productoRepositorio.service'
 export class SomieresComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  mostrarEditDel = false
+
   public displayedColumns = ['titulo', 'precio', 'details', 'update', 'delete']
   public dataSource = new MatTableDataSource<Producto>();
 
-  constructor(public repoService:ProductoRepositorioService, private router:Router) { }
+  constructor(public repoService:ProductoRepositorioService,
+              private router:Router,
+              private authService: AuthService) { }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit() {
+    this.mostrarEditDel = this.authService.isAdministrador()
+    if (!this.mostrarEditDel) {
+      this.displayedColumns = ['titulo', 'precio', 'details']
+    }
     this.getSomieres()
   }
 

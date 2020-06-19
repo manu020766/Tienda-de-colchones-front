@@ -4,6 +4,7 @@ import { Producto } from 'src/app/Models/producto';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common'
 import { ProductoRepositorioService } from 'src/app/core/productoRepositorio.service';
+import { AuthService } from 'src/app/core/auth.service';
 
 @Component({
   selector: 'app-ver-producto',
@@ -11,6 +12,7 @@ import { ProductoRepositorioService } from 'src/app/core/productoRepositorio.ser
   styleUrls: ['./ver-producto.component.less']
 })
 export class VerProductoComponent implements OnInit, OnDestroy {
+  mostrarEditDel = false
 
   sub:Subscription
   sub2:Subscription
@@ -18,7 +20,8 @@ export class VerProductoComponent implements OnInit, OnDestroy {
 
   constructor(private repoService: ProductoRepositorioService,
               private route: ActivatedRoute,
-              private location: Location) { 
+              private location: Location,
+              private authService: AuthService) { 
 
     this.sub = this.route.params.subscribe( params => {
       this.Producto$ = this.repoService.getProductoByCategoriaId(params.categoria, params.id)
@@ -33,7 +36,9 @@ export class VerProductoComponent implements OnInit, OnDestroy {
     this.location.back()
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { 
+    this.mostrarEditDel = this.authService.isAdministrador()
+   }
   
   ngOnDestroy(): void {
     if (this.sub) this.sub.unsubscribe()
