@@ -1,3 +1,11 @@
+<div class="titulo">
+  <h1>Colchones</h1>
+</div>
+<div class="crearProducto">
+  <button mat-mini-fab color="primary">
+    <mat-icon title="Crear producto">add</mat-icon>
+  </button>
+</div>
 <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="titulo">
         <th mat-header-cell *matHeaderCellDef> titulo </th>
@@ -39,5 +47,4 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
-</mat-paginator>
+<mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
