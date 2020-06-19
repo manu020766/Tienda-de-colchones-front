@@ -5,6 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common'
 import { ProductoRepositorioService } from 'src/app/core/productoRepositorio.service';
 import { AuthService } from 'src/app/core/auth.service';
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-ver-producto',
@@ -21,17 +24,26 @@ export class VerProductoComponent implements OnInit, OnDestroy {
   constructor(private repoService: ProductoRepositorioService,
               private route: ActivatedRoute,
               private location: Location,
-              private authService: AuthService) { 
+              private authService: AuthService,
+              private dialog: MatDialog) { 
 
     this.sub = this.route.params.subscribe( params => {
       this.Producto$ = this.repoService.getProductoByCategoriaId(params.categoria, params.id)
     })
   }
 
-  borrarProducto(id:string) {
-    let respuesta = confirm('Desea borrar el producto')
-
-    if (respuesta) this.sub2 = this.repoService.delColchon(id).subscribe(res => this.location.back())
+  borrarProducto(producto:Producto) {
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'CATEGORIA ' + producto.categoria,
+        message: 'Seguro que quieres borrar: ' + producto.titulo
+      }
+    })
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.sub2 = this.repoService.delColchon(producto._id).subscribe(res => this.location.back())
+      }
+    });
   }
 
   volver() {
