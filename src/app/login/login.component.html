@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div class="container">
+    <mat-card class="login">
+      <mat-card-title>
+        <mat-icon color="primary" style="margin-left: -40px;">store</mat-icon>
+        <h2>Tienda de colchones</h2>
+      </mat-card-title>
+      <mat-card-content class="login-campos">
+        <mat-form-field>
+          <mat-label>email</mat-label>
+          <input  #email type="text" matInput required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>password</mat-label>
+          <input #password type="password" matInput required>
+        </mat-form-field>
+      </mat-card-content>
+  
+      <mat-card-actions>
+        <button (click)="login(email.value, password.value)" mat-raised-button color="primary">login</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
