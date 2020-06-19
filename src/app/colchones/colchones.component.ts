@@ -16,7 +16,7 @@ export class ColchonesComponent implements OnInit, AfterViewInit {
 
   mostrarEditDel = false
 
-  public displayedColumns = ['titulo', 'precio', 'details', 'update', 'delete']
+  public displayedColumns = ['titulo', 'precio', 'details', 'delete', 'update' ]
   public dataSource = new MatTableDataSource<Producto>();
 
   constructor(public repoService:ProductoRepositorioService,
