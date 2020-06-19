@@ -10,6 +10,7 @@ import {MatListModule} from '@angular/material/list'
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatTableModule} from '@angular/material/table'
 import {MatPaginatorModule } from '@angular/material/paginator'
+import {MatDividerModule} from '@angular/material/divider'
 
 const componentes = [
   MatCardModule,
@@ -22,7 +23,8 @@ const componentes = [
   MatListModule,
   MatFormFieldModule,
   MatTableModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatDividerModule
 ]
 
 @NgModule({

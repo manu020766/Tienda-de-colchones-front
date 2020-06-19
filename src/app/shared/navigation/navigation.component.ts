@@ -73,4 +73,9 @@ export class NavigationComponent implements OnInit, OnDestroy, AfterViewInit {
     this.router.navigate([ruta])
   }
 
+  logOut() {
+    localStorage.removeItem('usuario')
+    this.router.navigateByUrl('/login')
+  }
+
 }
