@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DestacadosService } from './destacados.service';
 import { Observable } from 'rxjs';
 import { Producto } from 'src/app/Models/producto';
+import { ProductoRepositorioService } from 'src/app/core/productoRepositorio.service';
 
 @Component({
   selector: 'app-destacados',
@@ -11,9 +11,9 @@ import { Producto } from 'src/app/Models/producto';
 export class DestacadosComponent implements OnInit {
 
   destacados$:Observable<Producto[]>
-  constructor(public destacados: DestacadosService) { }
+  constructor(public repoService:ProductoRepositorioService) { }
 
   ngOnInit(): void {
-    this.destacados$ = this.destacados.getDestacados()
+    this.destacados$ = this.repoService.getDestacados()
   }
 }

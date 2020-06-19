@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { DestacadosService } from '../componentes/destacados/destacados.service';
+import { ProductoRepositorioService } from '../core/productoRepositorio.service'
 import { Producto } from '../Models/producto'
 import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'
@@ -16,7 +16,7 @@ export class ColchonesComponent implements OnInit, AfterViewInit {
   public displayedColumns = ['titulo', 'precio', 'details', 'update', 'delete']
   public dataSource = new MatTableDataSource<Producto>();
 
-  constructor(public repoService:DestacadosService, private router:Router) { }
+  constructor(public repoService:ProductoRepositorioService, private router:Router) { }
 
 
   ngAfterViewInit(): void {

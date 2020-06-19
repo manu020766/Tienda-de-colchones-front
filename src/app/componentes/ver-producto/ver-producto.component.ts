@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { Producto } from 'src/app/Models/producto';
-import { DestacadosService } from '../destacados/destacados.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common'
+import { ProductoRepositorioService } from 'src/app/core/productoRepositorio.service';
 
 @Component({
   selector: 'app-ver-producto',
@@ -16,7 +16,7 @@ export class VerProductoComponent implements OnInit, OnDestroy {
   sub2:Subscription
   Producto$:Observable<Producto>
 
-  constructor(private repoService: DestacadosService,
+  constructor(private repoService: ProductoRepositorioService,
               private route: ActivatedRoute,
               private location: Location) { 
 

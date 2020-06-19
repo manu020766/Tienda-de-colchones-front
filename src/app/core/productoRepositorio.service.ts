@@ -7,7 +7,7 @@ import { Producto } from 'src/app/Models/producto';
 @Injectable({
   providedIn: 'root'
 })
-export class DestacadosService {
+export class ProductoRepositorioService {
 
   baseApiUrl = "http://localhost:3000"
 

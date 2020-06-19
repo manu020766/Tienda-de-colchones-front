@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { DestacadosService } from '../componentes/destacados/destacados.service';
 import { Producto } from '../Models/producto'
 import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'
 import { Router } from '@angular/router'
+import { ProductoRepositorioService } from '../core/productoRepositorio.service';
 
 @Component({
   selector: 'app-somieres',
@@ -16,7 +16,7 @@ export class SomieresComponent implements OnInit, AfterViewInit {
   public displayedColumns = ['titulo', 'precio', 'details', 'update', 'delete']
   public dataSource = new MatTableDataSource<Producto>();
 
-  constructor(public repoService:DestacadosService, private router:Router) { }
+  constructor(public repoService:ProductoRepositorioService, private router:Router) { }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
