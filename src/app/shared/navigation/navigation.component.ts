@@ -4,8 +4,6 @@ import { Router, NavigationEnd } from '@angular/router'
 import { MatSidenav } from '@angular/material/sidenav'
 import { NavigationService } from './navigation.service'
 
-
-
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -14,6 +12,9 @@ import { NavigationService } from './navigation.service'
 export class NavigationComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('sidenav', {static: true}) public sidenav: MatSidenav
 
+  nombreUsuario: string
+  showNombreUsuario = true
+
   resizeObservable$: Observable<Event>
   resizeSubscription$: Subscription
   open:boolean
@@ -21,7 +22,12 @@ export class NavigationComponent implements OnInit, OnDestroy, AfterViewInit {
 
   showDestacados:boolean
 
-  constructor(private router:Router, public navigatioService: NavigationService) {
+  constructor(private router:Router,
+              public navigatioService: NavigationService) {
+
+    let usuario = JSON.parse(localStorage.getItem('usuario'))
+    this.nombreUsuario = usuario.nombre
+
     // this.navigatioService.setSidenav(this.sidenav)
     this.getScreenSize()
 
@@ -31,12 +37,6 @@ export class NavigationComponent implements OnInit, OnDestroy, AfterViewInit {
     this.router.events.subscribe(ruta => {
       if ( ruta instanceof NavigationEnd) {
         this.showDestacados = (ruta.url === "/") ? true:false
-
-        // if (ruta.url === "/") {
-        //   this.showDestacados = true
-        // } else {
-        //   this.showDestacados = false
-        // }
       }
     })
    }
@@ -51,6 +51,9 @@ export class NavigationComponent implements OnInit, OnDestroy, AfterViewInit {
           this.open = false
           this.style = 'push'
         } 
+
+        if (scrWidth < 600) { this.showNombreUsuario = false }
+          else { this.showNombreUsuario = true }
   }
 
   ngOnDestroy() {

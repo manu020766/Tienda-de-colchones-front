@@ -3,9 +3,14 @@
         <button mat-icon-button (click)="toggleSideNav()">
             <mat-icon>menu</mat-icon>
         </button>
-        <div id="paginaInicial">
-            <mat-icon>airline_seat_flat</mat-icon>
-            <mat-list-item routerLink="/">Tienda de colchones</mat-list-item>
+        <div class="container-toolbar">
+            <div id="paginaInicial">
+                <mat-icon>airline_seat_flat</mat-icon>
+                <mat-list-item routerLink="/">Tienda de colchones</mat-list-item>
+            </div>
+            <div id="nombreUsuario">
+                <mat-list-item  *ngIf="nombreUsuario && showNombreUsuario" >{{ nombreUsuario }}</mat-list-item>
+            </div>
         </div>
     </mat-toolbar>
 
