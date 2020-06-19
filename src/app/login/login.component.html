@@ -9,6 +9,7 @@
           <mat-label>email</mat-label>
           <input  #email type="text" matInput required>
         </mat-form-field>
+
         <mat-form-field>
           <mat-label>password</mat-label>
           <input #password type="password" matInput required>
@@ -16,7 +17,7 @@
       </mat-card-content>
   
       <mat-card-actions>
-        <button (click)="login(email.value, password.value)" mat-raised-button color="primary">login</button>
+        <button (click)="login()" mat-raised-button color="primary">login</button>
       </mat-card-actions>
     </mat-card>
   </div>

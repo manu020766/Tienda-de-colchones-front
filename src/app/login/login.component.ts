@@ -15,13 +15,17 @@ export class LoginComponent implements OnInit, AfterViewInit {
                public router:Router) { }
 
   ngAfterViewInit(): void {
-    this.emailRel.nativeElement.focus()
+    //Expression has changed after it was checked
+    setTimeout(() => this.emailRel.nativeElement.focus())
   }
 
   ngOnInit() {
   }
 
-  async login(email:string, password:string) {
+  async login() {
+    let email = this.emailRel.nativeElement.value
+    let password = this.passwordRel.nativeElement.value
+
     if(!(email && password)) {
       alert('Credenciales incorrectas')
       return
