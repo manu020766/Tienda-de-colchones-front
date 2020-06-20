@@ -66,12 +66,10 @@ export class ColchonesComponent implements OnInit, AfterViewInit,OnDestroy {
       }
     })
 
-    // let respuesta = confirm('Desea borrar el producto')
-    // if (respuesta) this.repoService.delColchon(id).subscribe(res => this.getColchones())
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe()
+    this.sub && this.sub.unsubscribe()
   }
 
 

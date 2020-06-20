@@ -1,18 +1,22 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
 import { Producto } from '../Models/producto'
 import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'
 import { Router } from '@angular/router'
 import { ProductoRepositorioService } from '../core/productoRepositorio.service';
 import { AuthService } from '../core/auth.service';
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog'
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-somieres',
   templateUrl: './somieres.component.html',
   styleUrls: ['./somieres.component.less']
 })
-export class SomieresComponent implements OnInit, AfterViewInit {
+export class SomieresComponent implements OnInit, AfterViewInit,OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  sub:Subscription
 
   mostrarEditDel = false
 
@@ -21,7 +25,8 @@ export class SomieresComponent implements OnInit, AfterViewInit {
 
   constructor(public repoService:ProductoRepositorioService,
               private router:Router,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private dialog: MatDialog) { }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -47,9 +52,23 @@ export class SomieresComponent implements OnInit, AfterViewInit {
     
   }
  
-  public redirectToDelete = (id: string) => {
-    let respuesta = confirm('Desea borrar el producto')
-    if (respuesta) this.repoService.delSomier(id).subscribe(res => this.getSomieres())
+  public redirectToDelete = (producto) => {
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'CATEGORIA ' + producto.categoria,
+        message: 'Seguro que quieres borrar: ' + producto.titulo
+      }
+    })
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.sub = this.repoService.delColchon(producto._id).subscribe(res => this.getSomieres())
+      }
+    })
+
+  }
+
+  ngOnDestroy(): void {
+    this.sub && this.sub.unsubscribe()
   }
 
 }
