@@ -28,7 +28,7 @@ export class VerProductoComponent implements OnInit, OnDestroy {
               private dialog: MatDialog) { 
 
     this.sub = this.route.params.subscribe( params => {
-      this.Producto$ = this.repoService.getProductoByCategoriaId(params.categoria, params.id)
+      this.Producto$ = this.repoService.getProductoById(params.id)
     })
   }
 

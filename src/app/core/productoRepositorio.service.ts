@@ -17,8 +17,8 @@ export class ProductoRepositorioService {
     return this.http.get<Producto[]>(`${this.baseApiUrl}/productos/?destacado=true`)
   }
 
-  getProductoByCategoriaId(categoria:string, id:string):Observable<Producto> {
-    return this.http.get<Producto>(`${this.baseApiUrl}/${categoria}/${id}`)
+  getProductoById(id:string):Observable<Producto> {
+    return this.http.get<Producto>(`${this.baseApiUrl}/productos/id/${id}`)
   }
 
   getColchones():Observable<Producto[]> {
