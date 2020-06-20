@@ -3,7 +3,7 @@ import { ProductoRepositorioService } from '../core/productoRepositorio.service'
 import { Producto } from '../Models/producto'
 import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { AuthService } from '../core/auth.service';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog'
@@ -17,6 +17,8 @@ import { Subscription } from 'rxjs';
 export class ColchonesComponent implements OnInit, AfterViewInit,OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   sub:Subscription
+  sub2:Subscription
+  categoria:string
 
   mostrarEditDel = false
 
@@ -25,6 +27,7 @@ export class ColchonesComponent implements OnInit, AfterViewInit,OnDestroy {
 
   constructor(public repoService:ProductoRepositorioService,
               private router:Router,
+              private route: ActivatedRoute,
               private authService: AuthService,
               private dialog: MatDialog) { }
  
@@ -38,15 +41,20 @@ export class ColchonesComponent implements OnInit, AfterViewInit,OnDestroy {
     if (!this.mostrarEditDel) {
       this.displayedColumns = ['titulo', 'precio', 'details']
     }
-    this.getColchones()
+
+    this.sub2 = this.route.params.subscribe( params => {
+      this.categoria = params.categoria
+      this.getProductos(this.categoria)
+    })
+    
   }
 
-  getColchones() {
-    this.repoService.getColchones().subscribe(res => this.dataSource.data = res as Producto[])
+  getProductos(categoria: string) {
+    this.repoService.getProductos(categoria).subscribe(res => this.dataSource.data = res as Producto[])
   }
 
   public redirectToDetails = (id: string) => {
-    this.router.navigateByUrl(`/colchones/${id}`)
+    this.router.navigateByUrl(`/${this.categoria}/${id}`)
   }
  
   public redirectToUpdate = (id: string) => {
@@ -62,15 +70,14 @@ export class ColchonesComponent implements OnInit, AfterViewInit,OnDestroy {
     })
     confirmDialog.afterClosed().subscribe(result => {
       if (result === true) {
-        this.sub = this.repoService.delColchon(producto._id).subscribe(res => this.getColchones())
+        this.sub = this.repoService.delColchon(producto._id).subscribe(res => this.getProductos(this.categoria))
       }
     })
-
   }
 
   ngOnDestroy(): void {
     this.sub && this.sub.unsubscribe()
+    this.sub2 && this.sub2.unsubscribe()
   }
-
 
 }
