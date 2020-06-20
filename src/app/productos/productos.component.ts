@@ -10,11 +10,11 @@ import { MatDialog } from '@angular/material/dialog'
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-colchones',
-  templateUrl: './colchones.component.html',
-  styleUrls: ['./colchones.component.less']
+  selector: 'app-productos',
+  templateUrl: './productos.component.html',
+  styleUrls: ['./productos.component.less']
 })
-export class ColchonesComponent implements OnInit, AfterViewInit,OnDestroy {
+export class ProductosComponent implements OnInit, AfterViewInit,OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   sub:Subscription
   sub2:Subscription

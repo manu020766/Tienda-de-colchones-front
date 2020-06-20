@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [AdminGuard],
     children: [
       { path: ':categoria/:id', component: VerProductoComponent},
-      { path: ':categoria', loadChildren: () => import('./colchones/colchones.module').then(m => m.ColchonesModule) }
+      { path: ':categoria', loadChildren: () => import('./productos/productos.module').then(m => m.ProductosModule) }
     ]
   },
   { path: '**', component: NotFoundComponent }
