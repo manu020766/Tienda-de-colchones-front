@@ -14,7 +14,7 @@ export class ProductoRepositorioService {
   constructor( public http: HttpClient) { }
 
   getDestacados():Observable<Producto[]> {
-    return this.http.get<Producto[]>(`${this.baseApiUrl}/destacados`)
+    return this.http.get<Producto[]>(`${this.baseApiUrl}/productos/?destacado=true`)
   }
 
   getProductoByCategoriaId(categoria:string, id:string):Observable<Producto> {
