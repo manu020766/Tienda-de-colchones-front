@@ -28,12 +28,4 @@ export class ProductoRepositorioService {
     return this.http.delete(`${this.baseApiUrl}/${id}`)
   }
 
-  getSomieres():Observable<Producto[]> {
-    return this.http.get<Producto[]>(`${this.baseApiUrl}/somieres`)
-  }
-
-  delSomier(id: string) {
-    return this.http.delete(`${this.baseApiUrl}/somieres/${id}`)
-  }
-
 }
