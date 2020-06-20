@@ -1,10 +1,9 @@
 <div class="dialogContainer">
     <h3 mat-dialog-title>{{data.title}}</h3>
     <div mat-dialog-content>{{data.message}}</div>
-    <br>
 
     <div class="botones">
-        <input mat-button  type="button" value="NO" [mat-dialog-close]="false">
-        <input mat-button  type="button" value="SI"  [mat-dialog-close]="true">
+      <button mat-raised-button color="accent" (click)="closeDialog()">OK</button>
     </div>
 </div>
+

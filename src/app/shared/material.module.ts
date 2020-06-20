@@ -11,7 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatTableModule} from '@angular/material/table'
 import {MatPaginatorModule } from '@angular/material/paginator'
 import {MatDividerModule} from '@angular/material/divider';
-import {MatDialogModule} from '@angular/material/dialog'
+import {MatDialogModule} from '@angular/material/dialog';
 
 const componentes = [
   MatCardModule,
@@ -31,6 +31,7 @@ const componentes = [
 
 @NgModule({
   imports: componentes,
-  exports: componentes
+  exports: componentes,
+  declarations: []
 })
 export class MaterialModule { }

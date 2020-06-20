@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { AuthService } from '../core/auth.service';
 import { Router } from '@angular/router';
+import { OkDialogComponent } from '../shared/ok-dialog/ok-dialog.component'
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
   @ViewChild('password') passwordRel:ElementRef
 
   constructor( public authService: AuthService,
-               public router:Router) { }
+               public router:Router,
+               private dialog: MatDialog) { }
 
   ngAfterViewInit(): void {
     //Expression has changed after it was checked
@@ -27,7 +30,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     let password = this.passwordRel.nativeElement.value
 
     if(!(email && password)) {
-      alert('Credenciales incorrectas')
+      this.mostrarMensaje('Credenciales incorrectas')
       return
     }
 
@@ -40,11 +43,23 @@ export class LoginComponent implements OnInit, AfterViewInit {
         this.passwordRel.nativeElement.value = ''
         this.router.navigateByUrl('/')
       } else {
-        alert(usuarioRes.mensaje)
+        this.mostrarMensaje(usuarioRes.mensaje)
       }
     } catch (error) {
-      alert('Credenciales incorrectas')
+      this.mostrarMensaje('Credenciales incorrectas')
     }
+  }
+
+  mostrarMensaje(mensaje:string) {
+    const okDialog = this.dialog.open(OkDialogComponent, {
+      data: {
+        title: 'ERROR',
+        message: mensaje
+      }
+    })
+    // okDialog.afterClosed().subscribe(result => {
+    //   console.log(result)
+    // })
   }
 
 }

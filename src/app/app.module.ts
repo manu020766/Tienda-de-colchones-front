@@ -9,6 +9,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { NotFoundModule } from './not-found/not-found.module';
 import { MaterialModule } from './shared/material.module';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
+import { OkDialogComponent } from './shared/ok-dialog/ok-dialog.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     ConfirmDialogComponent
   ],
   entryComponents: [
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    OkDialogComponent
   ],
   imports: [
     BrowserModule,
