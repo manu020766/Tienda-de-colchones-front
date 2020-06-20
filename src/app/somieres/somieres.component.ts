@@ -61,7 +61,7 @@ export class SomieresComponent implements OnInit, AfterViewInit,OnDestroy {
     })
     confirmDialog.afterClosed().subscribe(result => {
       if (result === true) {
-        this.sub = this.repoService.delColchon(producto._id).subscribe(res => this.getSomieres())
+        this.sub = this.repoService.delSomier(producto._id).subscribe(res => this.getSomieres())
       }
     })
 

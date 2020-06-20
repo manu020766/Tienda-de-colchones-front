@@ -70,7 +70,7 @@ export class ColchonesComponent implements OnInit, AfterViewInit,OnDestroy {
     })
     confirmDialog.afterClosed().subscribe(result => {
       if (result === true) {
-        this.sub = this.repoService.delColchon(producto._id).subscribe(res => this.getProductos(this.categoria))
+        this.sub = this.repoService.delProducto(producto._id).subscribe(res => this.getProductos(this.categoria))
       }
     })
   }
