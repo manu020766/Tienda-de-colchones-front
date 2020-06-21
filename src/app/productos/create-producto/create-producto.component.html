@@ -1,0 +1,39 @@
+
+<div class="container">
+    <h3 mat-dialog-title>{{ categoria }}</h3>
+
+    <mat-dialog-content [formGroup]="formulario">
+    
+        <div class="campos">
+            <mat-form-field>
+                <input matInput placeholder="titulo" formControlName="titulo">
+            </mat-form-field>
+        
+            <mat-form-field>
+                <textarea rows="3" matInput placeholder="descripcion" formControlName="descripcion"></textarea>
+            </mat-form-field>
+        
+            <mat-form-field>
+                <input matInput placeholder="precio" formControlName="precio">
+            </mat-form-field>
+        
+            <mat-checkbox  formControlName="destacado">Destacado</mat-checkbox>
+        </div>       
+
+        <div class="form-group" id="subir-foto">
+            <input #photoInput (change)="onPhotoSelected($event)" type="file" hidden="true">
+
+            <img (click)="photoInput.click()" style="overflow: hidden; scrollbar"
+            [src]="photoSelected || 'assets/imagen-no-disponible.jpg'"
+             alt="imagen no disponible">
+        </div>
+ 
+    
+    </mat-dialog-content>
+    
+    <mat-dialog-actions>
+        <button (click)="cancelar()" mat-raised-button color="warn">Cancelar</button>
+        <button (click)="guardar()" type="submit" [disabled]="!formulario.valid" mat-raised-button color="primary">Guardar</button>
+    </mat-dialog-actions>
+</div>
+

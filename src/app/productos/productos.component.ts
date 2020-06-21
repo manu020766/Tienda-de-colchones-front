@@ -6,8 +6,9 @@ import { MatPaginator } from '@angular/material/paginator'
 import { Router, ActivatedRoute } from '@angular/router'
 import { AuthService } from '../core/auth.service';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
-import { MatDialog } from '@angular/material/dialog'
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { Subscription } from 'rxjs';
+import { CreateProductoComponent } from './create-producto/create-producto.component';
 
 @Component({
   selector: 'app-productos',
@@ -47,6 +48,31 @@ export class ProductosComponent implements OnInit, AfterViewInit,OnDestroy {
       this.getProductos(this.categoria)
     })
     
+  }
+
+  addProduct() {
+    const DialogConfig = new MatDialogConfig()
+    DialogConfig.autoFocus = true
+    DialogConfig.disableClose = true
+  
+
+    DialogConfig.data = {
+      destacado: false,
+      _id: '',
+      titulo: '',
+      imagen: '',
+      precio: 0,
+      categoria: this.categoria,
+      descripcion: ''
+    }
+
+    const dialogoRef = this.dialog.open(CreateProductoComponent, DialogConfig)
+
+    dialogoRef.afterClosed().subscribe(data => {
+      this.repoService.createProducto(data.titulo, data.descripcion, data.categoria, data.precio, data.destacado, data.file)
+        .subscribe(res => console.log(res))
+    })
+
   }
 
   getProductos(categoria: string) {
