@@ -62,7 +62,7 @@ export class ProductosComponent implements OnInit, AfterViewInit,OnDestroy {
       titulo: '',
       imagen: '',
       precio: 0,
-      categoria: this.categoria,
+      categoria: this.categoria[0].toUpperCase() + this.categoria.slice(1),
       descripcion: ''
     }
 
@@ -70,7 +70,7 @@ export class ProductosComponent implements OnInit, AfterViewInit,OnDestroy {
 
     dialogoRef.afterClosed().subscribe(data => {
       this.repoService.createProducto(data.titulo, data.descripcion, data.categoria, data.precio, data.destacado, data.file)
-        .subscribe(res => console.log(res))
+        .subscribe(res => this.getProductos(this.categoria))
     })
 
   }

@@ -23,7 +23,7 @@
         <div class="form-group" id="subir-foto">
             <input #photoInput (change)="onPhotoSelected($event)" type="file" hidden="true">
 
-            <img (click)="photoInput.click()" style="overflow: hidden; scrollbar"
+            <img (click)="photoInput.click()" style="overflow: hidden;"
             [src]="photoSelected || 'assets/imagen-no-disponible.jpg'"
              alt="imagen no disponible">
         </div>
