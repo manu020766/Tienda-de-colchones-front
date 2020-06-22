@@ -8,11 +8,11 @@ interface HtmlInputEvent extends Event {
 }
 
 @Component({
-  selector: 'app-create-producto',
-  templateUrl: './create-producto.component.html',
-  styleUrls: ['./create-producto.component.less']
+  selector: 'app-create-update-producto',
+  templateUrl: './create-update-producto.component.html',
+  styleUrls: ['./create-update-producto.component.less']
 })
-export class CreateProductoComponent implements OnInit {
+export class CreateUpdateProductoComponent implements OnInit {
   file:File
   photoSelected: string | ArrayBuffer
 
@@ -31,7 +31,7 @@ export class CreateProductoComponent implements OnInit {
 
   constructor(public fb: FormBuilder,
               private domSanitizer: DomSanitizer,
-              public dialogoRef: MatDialogRef<CreateProductoComponent>,
+              public dialogoRef: MatDialogRef<CreateUpdateProductoComponent>,
               @Inject(MAT_DIALOG_DATA) data) { 
                 this._id = data._id
                 this.categoria = data.categoria

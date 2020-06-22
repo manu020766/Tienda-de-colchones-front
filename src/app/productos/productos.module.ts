@@ -5,14 +5,14 @@ import { ProductosRoutingModule } from './productos-routing.module';
 import { ProductosComponent } from './productos.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material.module';
-import { CreateProductoComponent } from './create-producto/create-producto.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CreateUpdateProductoComponent } from './create-update-producto/create-update-producto.component';
 
 
 @NgModule({
   declarations: [
     ProductosComponent,
-    CreateProductoComponent,
+    CreateUpdateProductoComponent,
   ],
   imports: [
     CommonModule,
@@ -21,6 +21,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     ReactiveFormsModule
   ],
-  entryComponents: [CreateProductoComponent]
+  entryComponents: [CreateUpdateProductoComponent]
 })
 export class ProductosModule { }

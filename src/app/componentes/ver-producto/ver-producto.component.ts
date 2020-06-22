@@ -7,7 +7,7 @@ import { ProductoRepositorioService } from 'src/app/core/productoRepositorio.ser
 import { AuthService } from 'src/app/core/auth.service';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CreateProductoComponent } from 'src/app/productos/create-producto/create-producto.component';
+import { CreateUpdateProductoComponent } from 'src/app/productos/create-update-producto/create-update-producto.component';
 
 
 @Component({
@@ -63,7 +63,7 @@ export class VerProductoComponent implements OnInit, OnDestroy {
       descripcion: producto.descripcion
     }
 
-    const dialogoRef = this.dialog.open(CreateProductoComponent, DialogConfig)
+    const dialogoRef = this.dialog.open(CreateUpdateProductoComponent, DialogConfig)
 
     dialogoRef.afterClosed().subscribe(data => {
       

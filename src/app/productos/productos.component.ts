@@ -8,7 +8,7 @@ import { AuthService } from '../core/auth.service';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { Subscription } from 'rxjs';
-import { CreateProductoComponent } from './create-producto/create-producto.component';
+import { CreateUpdateProductoComponent } from './create-update-producto/create-update-producto.component';
 
 @Component({
   selector: 'app-productos',
@@ -66,7 +66,7 @@ export class ProductosComponent implements OnInit, AfterViewInit,OnDestroy {
       descripcion: ''
     }
 
-    const dialogoRef = this.dialog.open(CreateProductoComponent, DialogConfig)
+    const dialogoRef = this.dialog.open(CreateUpdateProductoComponent, DialogConfig)
 
     dialogoRef.afterClosed().subscribe(data => {
       this.repoService.createProducto(data.titulo, data.descripcion, data.categoria, data.precio, data.destacado, data.file)
@@ -99,7 +99,7 @@ export class ProductosComponent implements OnInit, AfterViewInit,OnDestroy {
       descripcion: producto.descripcion
     }
 
-    const dialogoRef = this.dialog.open(CreateProductoComponent, DialogConfig)
+    const dialogoRef = this.dialog.open(CreateUpdateProductoComponent, DialogConfig)
 
     dialogoRef.afterClosed().subscribe(data => {
       
