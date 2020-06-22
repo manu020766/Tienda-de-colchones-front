@@ -11,6 +11,10 @@ import { MaterialModule } from './shared/material.module';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { OkDialogComponent } from './shared/ok-dialog/ok-dialog.component';
 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/interceptors/auth-interceptor.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,9 +31,16 @@ import { OkDialogComponent } from './shared/ok-dialog/ok-dialog.component';
     MaterialModule,
     LoginModule,
     DashboardModule,
-    NotFoundModule
+    NotFoundModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

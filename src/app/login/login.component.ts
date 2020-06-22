@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   
       if (usuarioRes.ok) {
         localStorage.setItem('usuario', JSON.stringify(usuarioRes.usuario))
+        localStorage.setItem('token', usuarioRes.token)
         this.emailRel.nativeElement.value = ''
         this.passwordRel.nativeElement.value = ''
         this.router.navigateByUrl('/')

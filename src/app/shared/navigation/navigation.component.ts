@@ -78,6 +78,8 @@ export class NavigationComponent implements OnInit, OnDestroy, AfterViewInit {
 
   logOut() {
     localStorage.removeItem('usuario')
+    localStorage.removeItem('token')
+    
     this.router.navigateByUrl('/login')
   }
 

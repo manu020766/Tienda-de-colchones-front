@@ -1,7 +1,7 @@
 <div class="titulo">
   <h1>{{ categoria }}</h1>
 </div>
-<div class="crearProducto">
+<div class="crearProducto" *ngIf="mostrarEditDel">
   <button (click)="addProduct()" mat-mini-fab color="primary">
     <mat-icon title="Crear producto">add</mat-icon>
   </button>
