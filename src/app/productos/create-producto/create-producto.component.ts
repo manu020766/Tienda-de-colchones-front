@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Producto } from 'src/app/Models/producto';
+import { DomSanitizer } from '@angular/platform-browser'
 
 interface HtmlInputEvent extends Event {
   target: HTMLInputElement & EventTarget
@@ -16,6 +16,8 @@ export class CreateProductoComponent implements OnInit {
   file:File
   photoSelected: string | ArrayBuffer
 
+  imagenInicial:string
+
   formulario: FormGroup
 
   destacado: boolean
@@ -27,6 +29,7 @@ export class CreateProductoComponent implements OnInit {
   descripcion: string
 
   constructor(public fb: FormBuilder,
+              private domSanitizer: DomSanitizer,
               public dialogoRef: MatDialogRef<CreateProductoComponent>,
               @Inject(MAT_DIALOG_DATA) data) { 
                 this._id = data._id
@@ -40,11 +43,17 @@ export class CreateProductoComponent implements OnInit {
 
   ngOnInit(): void {
     this.formulario = this.fb.group({
-      "titulo": ['', Validators.required],
-      "descripcion": ['', Validators.required],
-      "precio": ['', Validators.required],
-      "destacado": [false, Validators.required]
+      "titulo": [this.titulo, Validators.required],
+      "descripcion": [this.descripcion, Validators.required],
+      "precio": [this.precio, Validators.required],
+      "destacado": [this.destacado, Validators.required]
     })  
+
+    if (this._id) {
+      this.imagenInicial = "http://localhost:3000/upload/" + this.imagen
+    } else {
+      this.imagenInicial = 'assets/imagen-no-disponible.jpg'
+    }
   }
 
   cancelar() {
@@ -81,3 +90,4 @@ export class CreateProductoComponent implements OnInit {
   }
  
 }
+

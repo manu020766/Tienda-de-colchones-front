@@ -61,7 +61,7 @@ export class ProductosComponent implements OnInit, AfterViewInit,OnDestroy {
       _id: '',
       titulo: '',
       imagen: '',
-      precio: 0,
+      precio: '',
       categoria: this.categoria[0].toUpperCase() + this.categoria.slice(1),
       descripcion: ''
     }
@@ -83,8 +83,28 @@ export class ProductosComponent implements OnInit, AfterViewInit,OnDestroy {
     this.router.navigateByUrl(`/${this.categoria}/${id}`)
   }
  
-  public redirectToUpdate = (id: string) => {
-    
+  public redirectToUpdate = (producto) => {
+    const DialogConfig = new MatDialogConfig()
+    DialogConfig.autoFocus = true
+    DialogConfig.disableClose = true
+  
+
+    DialogConfig.data = {
+      destacado: producto.destacado,
+      _id: producto._id,
+      titulo: producto.titulo,
+      imagen: producto.imagen,
+      precio: producto.precio,
+      categoria: this.categoria[0].toUpperCase() + this.categoria.slice(1),
+      descripcion: producto.descripcion
+    }
+console.log(producto)
+    const dialogoRef = this.dialog.open(CreateProductoComponent, DialogConfig)
+
+    // dialogoRef.afterClosed().subscribe(data => {
+    //   this.repoService.createProducto(data.titulo, data.descripcion, data.categoria, data.precio, data.destacado, data.file)
+    //     .subscribe(res => this.getProductos(this.categoria))
+    // })
   }
  
   public redirectToDelete = (producto) => {

@@ -24,11 +24,10 @@
             <input #photoInput (change)="onPhotoSelected($event)" type="file" hidden="true">
 
             <img (click)="photoInput.click()" style="overflow: hidden;"
-            [src]="photoSelected || 'assets/imagen-no-disponible.jpg'"
+            [src]="photoSelected || imagenInicial"
              alt="imagen no disponible">
         </div>
- 
-    
+   
     </mat-dialog-content>
     
     <mat-dialog-actions>
