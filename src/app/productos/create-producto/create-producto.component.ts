@@ -17,6 +17,7 @@ export class CreateProductoComponent implements OnInit {
   photoSelected: string | ArrayBuffer
 
   imagenInicial:string
+  mensajeInicial:string
 
   formulario: FormGroup
 
@@ -51,8 +52,10 @@ export class CreateProductoComponent implements OnInit {
 
     if (this._id) {
       this.imagenInicial = "http://localhost:3000/upload/" + this.imagen
+      this.mensajeInicial = "click en la imagen para modificarla"
     } else {
       this.imagenInicial = 'assets/imagen-no-disponible.jpg'
+      this.mensajeInicial = "click en la imagen para añadir una imagen"
     }
   }
 
@@ -62,13 +65,14 @@ export class CreateProductoComponent implements OnInit {
 
   guardar() {
     let producto = {
+      _id: this._id,
       titulo : this.formulario.get('titulo').value,
       descripcion : this.formulario.get('descripcion').value,
       precio : this.formulario.get('precio').value,
       destacado : this.formulario.get('destacado').value,
       categoria: this.categoria,
-      imagen: this.file.name,
-      file: this.file
+      imagen: this.file?.name || '',
+      file: this.file || undefined
     }
 
     this.dialogoRef.close(producto)

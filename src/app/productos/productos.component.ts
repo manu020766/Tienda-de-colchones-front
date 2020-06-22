@@ -98,13 +98,15 @@ export class ProductosComponent implements OnInit, AfterViewInit,OnDestroy {
       categoria: this.categoria[0].toUpperCase() + this.categoria.slice(1),
       descripcion: producto.descripcion
     }
-console.log(producto)
+
     const dialogoRef = this.dialog.open(CreateProductoComponent, DialogConfig)
 
-    // dialogoRef.afterClosed().subscribe(data => {
-    //   this.repoService.createProducto(data.titulo, data.descripcion, data.categoria, data.precio, data.destacado, data.file)
-    //     .subscribe(res => this.getProductos(this.categoria))
-    // })
+    dialogoRef.afterClosed().subscribe(data => {
+      
+      if (data)
+        this.repoService.updateProducto(data.titulo, data.descripcion, data.categoria, data.precio, data.destacado, data.file, data._id)
+          .subscribe(res => this.getProductos(this.categoria))
+    })
   }
  
   public redirectToDelete = (producto) => {

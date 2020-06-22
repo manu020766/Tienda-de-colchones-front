@@ -23,6 +23,7 @@
         <div class="form-group" id="subir-foto">
             <input #photoInput (change)="onPhotoSelected($event)" type="file" hidden="true">
 
+            <p style="text-align: right; color: #3F51B5;">{{ mensajeInicial }}</p>
             <img (click)="photoInput.click()" style="overflow: hidden;"
             [src]="photoSelected || imagenInicial"
              alt="imagen no disponible">

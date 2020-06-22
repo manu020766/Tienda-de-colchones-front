@@ -26,6 +26,18 @@ export class ProductoRepositorioService {
     return this.http.post(`${this.baseApiUrl}`, fd)
   }
 
+  updateProducto(titulo:string, descripcion:string, categoria:string, precio:number, destacado:boolean, imagen:File, id:string){
+    let fd = new FormData()
+    fd.append('titulo', titulo)
+    fd.append('descripcion', descripcion)
+    fd.append('categoria', categoria)
+    fd.append('precio', precio.toString())
+    fd.append('destacado', destacado.toString())
+    fd.append('imagen', imagen)
+
+    return this.http.put(`${this.baseApiUrl}/${id}`, fd)
+  }
+
   getDestacados():Observable<Producto[]> {
     return this.http.get<Producto[]>(`${this.baseApiUrl}/?destacado=true`)
   }
