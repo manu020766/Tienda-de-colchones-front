@@ -55,7 +55,7 @@ export class CreateProductoComponent implements OnInit {
       this.mensajeInicial = "click en la imagen para modificarla"
     } else {
       this.imagenInicial = 'assets/imagen-no-disponible.jpg'
-      this.mensajeInicial = "click en la imagen para añadir una imagen"
+      this.mensajeInicial = "click en la camara para añadir una imagen"
     }
   }
 

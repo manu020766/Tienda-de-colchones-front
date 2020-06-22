@@ -6,7 +6,8 @@ import { Location } from '@angular/common'
 import { ProductoRepositorioService } from 'src/app/core/productoRepositorio.service';
 import { AuthService } from 'src/app/core/auth.service';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CreateProductoComponent } from 'src/app/productos/create-producto/create-producto.component';
 
 
 @Component({
@@ -43,6 +44,32 @@ export class VerProductoComponent implements OnInit, OnDestroy {
       if (result === true) {
         this.sub2 = this.repoService.delProducto(producto._id).subscribe(res => this.location.back())
       }
+    })
+  }
+
+  editarProducto(producto) {
+    const DialogConfig = new MatDialogConfig()
+    DialogConfig.autoFocus = true
+    DialogConfig.disableClose = true
+  
+
+    DialogConfig.data = {
+      destacado: producto.destacado,
+      _id: producto._id,
+      titulo: producto.titulo,
+      imagen: producto.imagen,
+      precio: producto.precio,
+      categoria: producto.categoria[0].toUpperCase() + producto.categoria.slice(1),
+      descripcion: producto.descripcion
+    }
+
+    const dialogoRef = this.dialog.open(CreateProductoComponent, DialogConfig)
+
+    dialogoRef.afterClosed().subscribe(data => {
+      
+      if (data)
+        this.repoService.updateProducto(data.titulo, data.descripcion, data.categoria, data.precio, data.destacado, data.file, data._id)
+          .subscribe(res => this.Producto$ = this.repoService.getProductoById(data._id))
     })
   }
 
