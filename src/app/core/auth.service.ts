@@ -10,7 +10,7 @@ export class AuthService {
   constructor(public http:HttpClient) { }
 
   isLoggedIn() {
-    let usuario = localStorage.getItem('usuario')
+    let usuario = localStorage.getItem('token')
     return !!usuario
   }
 
@@ -22,7 +22,6 @@ export class AuthService {
 
   isAdministrador() {
     let usuario = JSON.parse(localStorage.getItem('usuario'))
-    console.log(usuario.rol)
     return usuario.rol === 'administrador'
   }
   

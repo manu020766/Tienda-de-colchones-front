@@ -21,8 +21,6 @@ export class ProductoRepositorioService {
     fd.append('destacado', destacado.toString())
     fd.append('imagen', imagen)
 
-    console.log(fd)
-
     return this.http.post(`${this.baseApiUrl}`, fd)
   }
 

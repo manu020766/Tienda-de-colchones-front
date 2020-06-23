@@ -69,8 +69,9 @@ export class ProductosComponent implements OnInit, AfterViewInit,OnDestroy {
     const dialogoRef = this.dialog.open(CreateUpdateProductoComponent, DialogConfig)
 
     dialogoRef.afterClosed().subscribe(data => {
-      this.repoService.createProducto(data.titulo, data.descripcion, data.categoria, data.precio, data.destacado, data.file)
-        .subscribe(res => this.getProductos(this.categoria))
+      if (data)
+        this.repoService.createProducto(data.titulo, data.descripcion, data.categoria, data.precio, data.destacado, data.file)
+                          .subscribe(res => this.getProductos(this.categoria))
     })
 
   }
