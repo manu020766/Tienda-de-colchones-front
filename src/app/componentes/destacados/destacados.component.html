@@ -4,7 +4,7 @@
           <mat-card-title class="truncate">{{ destacado.titulo }}</mat-card-title>
           <mat-card-subtitle>{{ destacado.categoria }}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="http://localhost:3000/upload/{{ destacado.imagen }}">
+        <img mat-card-image src="http://localhost:3000/upload/{{ destacado.imagen }}"  (error)="errorHandler($event)">
         <mat-card-content>
           <p class="truncate">{{ destacado.descripcion }}</p>
           <a mat-button color="primary"

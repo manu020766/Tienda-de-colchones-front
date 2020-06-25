@@ -16,4 +16,8 @@ export class DestacadosComponent implements OnInit {
   ngOnInit(): void {
     this.destacados$ = this.repoService.getDestacados()
   }
+
+  errorHandler(event) {
+    event.target.src = "assets/imagen-no-disponible.jpg";
+  }
 }

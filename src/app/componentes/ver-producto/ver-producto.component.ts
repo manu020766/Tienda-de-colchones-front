@@ -85,4 +85,9 @@ export class VerProductoComponent implements OnInit, OnDestroy {
     if (this.sub) this.sub.unsubscribe()
     if (this.sub2) this.sub2.unsubscribe()
   }
+
+  errorHandler(event) {
+    event.target.src = "assets/imagen-no-disponible.jpg";
+  }
+
 }

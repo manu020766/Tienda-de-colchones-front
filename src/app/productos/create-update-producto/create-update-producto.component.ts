@@ -59,6 +59,13 @@ export class CreateUpdateProductoComponent implements OnInit {
     }
   }
 
+  errorHandler(event) {
+    // event.target.src = "assets/imagen-no-disponible.jpg";
+    this.photoSelected = ''
+    this.imagenInicial = 'assets/imagen-no-disponible.jpg'
+    this.mensajeInicial = "click en la camara para añadir una imagen"
+  }
+
   cancelar() {
     this.dialogoRef.close()
   }
