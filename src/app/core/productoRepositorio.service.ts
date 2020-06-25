@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Producto } from 'src/app/Models/producto';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,13 @@ export class ProductoRepositorioService {
     fd.append('destacado', destacado.toString())
     fd.append('imagen', imagen)
 
-    return this.http.post(`${this.baseApiUrl}`, fd)
+    return this.http.post(`${this.baseApiUrl}`, fd).pipe(
+      tap((res:any) => {
+        if(res.message && res.message.includes('intrusón')) {
+          this.removeIntruso()
+        }
+      })
+    )
   }
 
   updateProducto(titulo:string, descripcion:string, categoria:string, precio:number, destacado:boolean, imagen:File, id:string){
@@ -33,7 +40,14 @@ export class ProductoRepositorioService {
     fd.append('destacado', destacado.toString())
     fd.append('imagen', imagen)
 
-    return this.http.put(`${this.baseApiUrl}/${id}`, fd)
+    return this.http.put(`${this.baseApiUrl}/${id}`, fd).pipe(
+      tap((res:any) => {
+        if(res.message && res.message.includes('intrusón')) {
+          this.removeIntruso()
+        }
+      })
+    )
+
   }
 
   getDestacados():Observable<Producto[]> {
@@ -49,7 +63,20 @@ export class ProductoRepositorioService {
   }
 
   delProducto(id: string) {
+
     return this.http.delete(`${this.baseApiUrl}/${id}`)
+    .pipe(
+      tap((res:any) => {
+        if(res.message && res.message.includes('intrusón')) {
+          this.removeIntruso()
+        }
+      })
+    )
+  }
+  
+  removeIntruso() {
+    localStorage.removeItem('usuario')
+    localStorage.removeItem('token')
   }
 
 }
